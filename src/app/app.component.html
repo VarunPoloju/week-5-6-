@@ -1,0 +1,178 @@
+<div class="container">
+  <div class="row">
+      <div class="col-sm-3" style="padding: 10px;" >
+       
+       
+      </div>
+      <div class="col-md-6" style="padding: 35px;">
+          <div class="card">
+              <div class="card-header" >
+                  <h1><b>Form Validation</b> <button class="btn" style="color: rgb(27, 26, 26); font-size: 2rem;">*</button></h1>
+              </div>
+          <div class="card-body">
+          <div class="container" >
+              <form [formGroup]="registrationForm"  class="form" (ngSubmit)="onSubmit()">
+
+                  <!--associate name-->
+                  <label for="nm"></label>
+                  <input type="text" name="associateName" id="nm" class="form-control border-secondary" placeholder="Associate Name" formControlName="associateName">
+                  <div class="text-danger" *ngIf="submitted||getControls().associateName.invalid && (getControls().associateName.dirty || getControls().associateName.touched)">
+                    <p *ngIf="getControls().associateName.errors?.required">Please enter Associate Name</p>
+                  </div>
+                  <div class="err-text "  id="nm"  *ngIf="getControls().associateName.hasError('pattern')">Accepts Alphabets & space</div>
+                  <div class="err-text text-danger" id="nm" *ngIf="getControls().associateName.errors?.minlength">Min Length is 5</div>
+                  <div class="err-text text-danger" id="nm" *ngIf="getControls().associateName.errors?.maxlength">Max Length is 30</div>
+                  
+                 
+
+                  <!--associate id-->
+                  <label for="em" class="pt-5"></label>
+                  <input type="text" name="associateId" id="em" class="form-control border-secondary" placeholder="Associate Id" formControlName="associateId">
+                  <div class="text-danger" *ngIf="submitted||getControls().associateId.invalid && (getControls().associateId.dirty || getControls().associateId.touched)">
+                    <p *ngIf="getControls().associateId.errors?.required">Please enter Associate Id</p>
+                  </div>
+                  <div class="err-text text-danger" id="em" *ngIf="getControls().associateId.hasError('pattern')">Invalid Associate Id</div>
+                  <div class="err-text text-danger" id="nm" *ngIf="getControls().associateId.errors?.minlength">Min Length is 6</div>
+                  <div class="err-text text-danger" id="nm" *ngIf="getControls().associateId.errors?.maxlength">Max Length is 6</div>
+
+                  <!--project id-->
+                  <label for="us" class="pt-5"></label>
+                  <input type="text" name="projectId" id="un" class="form-control border-secondary" placeholder="Project ID" formControlName="projectId">
+                  <div class="text-danger" *ngIf="submitted||getControls().projectId.invalid && (getControls().projectId.dirty || getControls().projectId.touched)">
+                    <p *ngIf="getControls().projectId.errors?.required">Please enter Project ID</p>
+                  </div>
+                  <div class="err-text text-danger" id="un" *ngIf="getControls().projectId.hasError('pattern')">Invalid Project Id</div>
+                  <div class="err-text text-danger" id="nm" *ngIf="getControls().projectId.errors?.minlength">Min Length is 12</div>
+                  <div class="err-text text-danger" id="nm" *ngIf="getControls().projectId.errors?.maxlength">Max Length is 12</div>
+
+
+
+
+                  <!--location-->
+                  <div class="form-group pt-5">
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input border-secondary" type="radio" name="location" value="Offshore" id="Off" formControlName="location" (change)="offLoc()">
+                      <label class="form-check-label" for="Off">Offshore</label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                      <input class="form-check-input border-secondary" type="radio" name="location" value="Onshore" id="On" formControlName="location" (change)="onLoc()">
+                      <label class="form-check-label" for="On">Onshore</label>
+                    </div>
+                  </div>
+
+
+                  <!--place-->
+                  <div class="form-group">
+                    <select class="form-select border-secondary" aria-label="Default select example" formControlName="place">
+                      <option [value]=obj *ngFor="let obj of display" >{{obj}}</option>
+                     
+                    </select>
+
+                    <div class="text-danger" *ngIf="submitted||getControls().place.invalid && (getControls().place.dirty || getControls().place.touched)">
+                      <p *ngIf="getControls().place.errors?.required">*Please select location</p>
+                    </div>
+                  </div>
+              
+                
+
+
+
+                  <!--skills-->
+                  <div class="form-group" formGroupName="myCheckboxGroup">
+                    <div class="label pt-5" style="font-size: 1.2rem;"><strong>Skills</strong></div>
+                    <div class="row pt-2">
+                      <div class="col-sm-4">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="html" id="myCheckbox1">
+                          <label class="custom-control-label" for="myCheckbox1">HTML5,CSS3,JS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="sass" id="myCheckbox2">
+                          <label class="custom-control-label" for="myCheckbox2">SASS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="es5" id="myCheckbox3">
+                          <label class="custom-control-label" for="myCheckbox3">ES5,ES6,ES7..</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="bootstrap" id="myCheckbox4">
+                          <label class="custom-control-label" for="myCheckbox4">Bootstrap 4</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="angular" id="myCheckbox5">
+                          <label class="custom-control-label" for="myCheckbox5">Angular 8</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="react" id="myCheckbox6">
+                          <label class="custom-control-label" for="myCheckbox6">React JS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="vue" id="myCheckbox7">
+                          <label class="custom-control-label" for="myCheckbox7">Vue JS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="typescript" id="myCheckbox8">
+                          <label class="custom-control-label" for="myCheckbox8">TypeScript</label>
+                        </div>
+                      </div>
+                      <div class="col-sm-4">
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="express" id="myCheckbox9">
+                          <label class="custom-control-label" for="myCheckbox9">Express JS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="node" id="myCheckbox10">
+                          <label class="custom-control-label" for="myCheckbox10">Node JS</label>
+                        </div>
+                        <div class="custom-control custom-checkbox">
+                          <input type="checkbox" class="custom-control-input" formControlName="mongo" id="myCheckbox11">
+                          <label class="custom-control-label" for="myCheckbox11">Mongo DB</label>
+                        </div>
+                      </div>
+                    </div>
+                      <div class="text-danger" *ngIf="submitted||getControls().myCheckboxGroup.invalid && (getControls().myCheckboxGroup.dirty || getControls().myCheckboxGroup.touched)">
+                      <p *ngIf="getControls().myCheckboxGroup.errors?.requireOneCheckboxToBeChecked">Please select Min 5 skills</p>
+                    </div>
+                  </div>
+
+
+
+                  <!--upload profile-->
+                  <div class="form-group pt-5">
+                    <label for="exampleFormControlFile1" class="d-block"><strong>Upload Profile</strong></label>
+                    <input type="file" class="form-control-file border-secondary" id="exampleFormControlFile1" name="uploadProfile" formControlName="uploadProfile">
+                    <div class="text-danger" *ngIf="submitted||getControls().uploadProfile.invalid && (getControls().uploadProfile.dirty || getControls().uploadProfile.touched)">
+                      <p *ngIf="getControls().uploadProfile.errors?.required">Please select location</p>
+                    </div>
+                  </div>
+
+
+          
+
+                  <!--comments-->
+                  <div class="form-group pt-5">
+                   <label for="exampleFormControlTextarea1"></label>
+                    <textarea class="form-control border-secondary" id="exampleFormControlTextarea1" rows="2" placeholder="Comments" name="comments" formControlName="comments"></textarea>
+                    <div class="text-danger" *ngIf="submitted||getControls().comments.invalid && (getControls().comments.dirty || getControls().comments.touched)">
+                      <p *ngIf="getControls().comments.errors?.required">Please enter comments</p>
+                    </div>
+                  </div>
+                
+
+                  <!--Buttons-->
+                  <div class="text-center pt-4">
+                    <button type="submit" class="btn btn-primary mr-1" [disabled]="registrationForm.invalid">Register</button>
+                    <button class="btn btn-secondary float-end" type="reset" (click)="onReset()">Reset</button>
+                </div>
+                   
+              </form>
+          </div>
+      </div>
+      </div>
+  </div>
+      <div class="col-sm-3"></div>
+  </div>
+</div>
+<router-outlet></router-outlet>
